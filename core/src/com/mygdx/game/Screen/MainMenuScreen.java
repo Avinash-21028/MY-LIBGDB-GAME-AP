@@ -13,10 +13,10 @@ import com.mygdx.game.MyGdxGame;
 
 import static java.lang.Thread.sleep;
 
-public class PlayScreen implements Screen {
+public class MainMenuScreen implements Screen {
 
 	private MyGdxGame game;
-	private Texture texture,texture2;
+	private Texture texture,texture2,play_button_active,play_button_inactive,exit_button_active,exit_button_inactive;
 	private TextureRegion region;
 	Rectangle Tanks;
 	Array<Rectangle> Weapons;
@@ -25,10 +25,14 @@ public class PlayScreen implements Screen {
 	private Viewport gamePort;
 
 
-	public PlayScreen(MyGdxGame game) {
+	public MainMenuScreen(MyGdxGame game) {
 		this.game = game;
-		texture = new Texture("Untitled.png");
+		texture = new Texture("Untitled.gif");
 		texture2 = new Texture("Tankstars.png");
+		play_button_active = new Texture("play_button_active.png");
+		play_button_inactive = new Texture("play_button_inactive.png");
+		exit_button_active = new Texture("exit_button_active.png");
+		exit_button_inactive = new Texture("exit_button_inactive.png");
 		region = new TextureRegion(texture, 0, 0, 32, 32);
 		gamecam = new OrthographicCamera();
 		gamePort = new ScreenViewport(gamecam);
@@ -46,37 +50,20 @@ public class PlayScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		game.batch.setProjectionMatrix(gamecam.combined);
 		game.batch.begin();
-//		try {
-//			sleep(5000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//		game.batch.draw(texture, 0, 0);
 		game.batch.draw(texture, -Gdx.graphics.getWidth()/2,-Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		game.font.draw(game.batch, "Welcome to Tankstars2!!! ", 100, 150)
-		//Display message Welcome to Tankstars
-		//print texture2 after 5 seconds
-//		try {
-//			sleep(5000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
+//		if (Gdx.input.getX() > 0 && Gdx.input.getX() < 200 && Gdx.input.getY() > 0 && Gdx.input.getY() < 200) {
+//			game.batch.draw(play_button_active, -Gdx.graphics.getWidth()/2,-Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//		} else {
+//			game.batch.draw(play_button_inactive, -Gdx.graphics.getWidth()/2,-Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 //		}
-//		game.batch.draw(texture2, -Gdx.graphics.getWidth()/2,-Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		game.batch.draw(texture2, 0, 0);
-//		game.batch.draw(texture2, -Gdx.graphics.getWidth()/2,-Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		game.batch.draw(texture2, -Gdx.graphics.getWidth()/2,-Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		game.batch.draw(texture2, 0, 0);
-//		try {
-//			wait(10000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
+//		if (Gdx.input.getX() > 0 && Gdx.input.getX() < 200 && Gdx.input.getY() > 0 && Gdx.input.getY() < 200) {
+//			game.batch.draw(exit_button_active, -Gdx.graphics.getWidth()/2,-Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//		} else {
+//			game.batch.draw(exit_button_inactive, -Gdx.graphics.getWidth()/2,-Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 //		}
-//		Texture img = new Texture("bad.jpg");
-//		game.batch.draw(img, 0, 0);
-//		game.batch.end();
-//		game.batch.begin();
-		game.font.draw(game.batch, "Welcome to Tankstars", 100, 150);
+		if (Gdx.input.isTouched()){
+			game.setScreen(new GamePlayScreen(game));
+		}
 		game.batch.end();
 	}
 

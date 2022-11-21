@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.Screen.PlayScreen;
+import com.mygdx.game.Screen.MainMenuScreen;
 
 public class MyGdxGame extends Game {
 	public static final int V_WIDTH = 786;
@@ -23,7 +23,7 @@ public class MyGdxGame extends Game {
 		img = new Texture("Untitled.png");
 		font = new BitmapFont();
 		img.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-		setScreen(new PlayScreen(this));
+		setScreen(new MainMenuScreen(this));
 	}
 
 	@Override
