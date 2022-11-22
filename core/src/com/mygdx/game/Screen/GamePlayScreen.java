@@ -11,20 +11,16 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.MyGdxGame;
-
-import java.awt.*;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
 public class GamePlayScreen implements Screen {
 
 	MyGdxGame game;
-	private Texture texture,texture2,play_button_active,play_button_inactive,exit_button_active,exit_button_inactive;
+	private Texture texture,texture2,texture3,texture4;
 	private TextureRegion region;
 
 	private OrthographicCamera gamecam;
@@ -32,7 +28,7 @@ public class GamePlayScreen implements Screen {
 	private Viewport gamePort;
 
 	private Texture gameplayscreen;
-	private Image gameplayscreen_image;
+	private Image gameplayscreen_image,start_image, load_game_image, exit_image;
 //	private OrthographicCamera gamecam;
 //	public GamePlayScreen(MyGdxGame game) {
 //		this.game = game;
@@ -43,13 +39,30 @@ public GamePlayScreen(MyGdxGame game) {
 	this.game = game;
 	texture = new Texture("gameplayscreen1.jpg");
 	gameplayscreen_image = new Image(texture);
-	System.out.println("GamePlayScreen created 2");
+
+	texture2 = new Texture("new_game.png");
+	start_image = new Image(texture2);
+
+	texture3 = new Texture("load_game.png");
+	load_game_image = new Image(texture3);
+
+	texture4 = new Texture("exit.png");
+	exit_image = new Image(texture4);
+
 	region = new TextureRegion(texture, 0, 0, 32, 32);
 	gamecam = new OrthographicCamera();
-	gamePort = new StretchViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
+	gamePort = new StretchViewport(3840,2160, gamecam);
 	stage = new Stage(gamePort);
+
 	gameplayscreen_image.setPosition(0,0);
+	start_image.setPosition(400,1500);
+	load_game_image.setPosition(400,1100);
+	exit_image.setPosition(400,700);
+
 	stage.addActor(gameplayscreen_image);
+	stage.addActor(start_image);
+	stage.addActor(load_game_image);
+	stage.addActor(exit_image);
 
 //		gamePort = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
 }
@@ -57,13 +70,66 @@ public GamePlayScreen(MyGdxGame game) {
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
-		System.out.println("show 2.1");
 		gameplayscreen_image.addAction(sequence(alpha(0), fadeIn(2f)));
-		gameplayscreen_image.addListener(new ClickListener() {
+		gameplayscreen_image.addListener(
+				new ClickListener() {
+
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				System.out.printf("GamePlayScreen clicked 2.3");
 //				game.setScreen(new GamePlayScreen(game));
+			}
+		});
+
+        new_game();
+		load_game();
+		exit_game();
+//		load_game_image.addAction(sequence(alpha(0), fadeIn(2f)));
+//		load_game_image.addListener(new ClickListener() {
+//			@Override
+//			public void clicked(InputEvent event, float x, float y) {
+//				System.out.printf("GamePlayScreen clicked 2.3 Resume");
+//				game.setScreen(new Resume_Game(game));
+//			}
+//		});
+
+		exit_image.addAction(sequence(alpha(0), fadeIn(2f)));
+		exit_image.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				System.out.printf("GamePlayScreen clicked 2.3 Exit");
+				game.setScreen(new MainMenuScreen(game));
+			}
+		});
+	}
+
+	private void new_game() {
+		start_image.addAction(sequence(alpha(0), fadeIn(2f)));
+		start_image.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+//				System.out.printf("GamePlayScreen clicked 2.3 New Game");
+				game.setScreen(new Choose_Tank(game));
+			}
+		});
+	}
+
+	private void load_game(){
+		load_game_image.addAction(sequence(alpha(0), fadeIn(2f)));
+		load_game_image.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				game.setScreen(new Resume_Game(game));
+			}
+		});
+	}
+
+	private void exit_game(){
+		exit_image.addAction(sequence(alpha(0), fadeIn(2f)));
+		exit_image.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				game.setScreen(new MainMenuScreen(game));
 			}
 		});
 	}
