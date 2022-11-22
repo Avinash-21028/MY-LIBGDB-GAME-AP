@@ -35,6 +35,7 @@ public class GamePlayScreen implements Screen {
 //		System.out.printf("GamePlayScreen created");
 //
 //	}
+
 public GamePlayScreen(MyGdxGame game) {
 	this.game = game;
 	texture = new Texture("gameplayscreen1.jpg");

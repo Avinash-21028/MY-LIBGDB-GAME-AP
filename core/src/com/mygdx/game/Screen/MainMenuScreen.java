@@ -31,7 +31,7 @@ public class MainMenuScreen implements Screen {
 	private Texture texture,texture2,play_button_active,play_button_inactive,exit_button_active,exit_button_inactive;
 	private TextureRegion region;
 	Rectangle Tanks;
-	Array<Rectangle> Weapons;
+	ArrayList<Rectangle> Weapons;
 
 	private Viewport gamePort;
 
