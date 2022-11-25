@@ -1,15 +1,11 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.Screen.MainMenuScreen;
+import com.mygdx.game.Screen.LoadingScreen;
 
 public class MyGdxGame extends Game {
 	public static final int V_WIDTH = 786;
@@ -30,7 +26,7 @@ public class MyGdxGame extends Game {
 		gamecam = new OrthographicCamera();
 		gamecam.setToOrtho(false, V_WIDTH, V_HEIGHT);
 		img.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-		setScreen(new MainMenuScreen(this));
+		setScreen(new LoadingScreen(this));
 	}
 
 	@Override

@@ -76,7 +76,7 @@ public class LoadingScreen implements Screen {
 //		play_button_active_image.addListener(new ClickListener() {
 //			@Override
 //			public void clicked(InputEvent event, float x, float y) {
-//				game.setScreen(new GamePlayScreen(game));
+//				game.setScreen(new MainMenuScreen(game));
 //
 //			}
 //		});
@@ -86,7 +86,7 @@ public class LoadingScreen implements Screen {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				dispose();
-				game.setScreen(new GamePlayScreen(game));
+				game.setScreen(new MainMenuScreen(game));
 			}
 		});
 	}
@@ -112,7 +112,7 @@ public class LoadingScreen implements Screen {
 //		}
 //		if (Gdx.input.isTouched()){
 //			dispose();
-//			game.setScreen(new GamePlayScreen(game));
+//			game.setScreen(new MainMenuScreen(game));
 //		}
 		game.batch.end();
 	}

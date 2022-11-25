@@ -30,7 +30,7 @@ public class Resume_Game implements Screen{
 		bgimg = new Texture("savedgames.png");
 //		System.out.printf("Resume_Game created");
 		load_games = new Image(bgimg);
-//		System.out.println("GamePlayScreen created 2");
+//		System.out.println("MainMenuScreen created 2");
 		region = new TextureRegion(bgimg, 0, 0, 32, 32);
 		gamecam = new OrthographicCamera();
 		gamePort = new StretchViewport(1120,630, gamecam);
@@ -48,7 +48,7 @@ public class Resume_Game implements Screen{
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				System.out.printf("Resume_Game clicked 2.3");
-				game.setScreen(new GamePlayScreen(game));
+				game.setScreen(new MainMenuScreen(game));
 //				dispose();
 			}
 		});

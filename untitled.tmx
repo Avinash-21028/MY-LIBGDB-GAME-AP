@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
+ <tileset firstgid="1" source="TileToon1.tsx"/>
+ <layer id="1" name="background" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt2DlSQkEURuEuXgYirAYQWIlMFpOuREFZDfNqGISFcOKXGL5u63xVJ7/Jn9wQJP0Xr6UQetSnAQ1pRG+loi+T9JdPdvpFC1rSN/3Qyv1K0Vuz0w1taUd7OtDR/UrRO7HTM13oSr90o7v7laJXzkKo0BNV6ZlqVM+KvkxSXv5f1WCnTWrRC7WpQ133K0Un/68as9MJTWlGc3qnD/crRcd/lZQu/1VSuvxXSenyXyWly3+VlK4HmuUqRw==
+  </data>
+ </layer>
+ <layer id="2" name="graphics" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAC+BjDAAAE=
+  </data>
+ </layer>
+ <objectgroup id="3" name="ground"/>
+</map>

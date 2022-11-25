@@ -17,7 +17,7 @@ import com.mygdx.game.MyGdxGame;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
-public class GamePlayScreen implements Screen {
+public class MainMenuScreen implements Screen {
 
 	MyGdxGame game;
 	private Texture texture,texture2,texture3,texture4;
@@ -30,13 +30,13 @@ public class GamePlayScreen implements Screen {
 	private Texture gameplayscreen;
 	private Image gameplayscreen_image,start_image, load_game_image, exit_image;
 //	private OrthographicCamera gamecam;
-//	public GamePlayScreen(MyGdxGame game) {
+//	public MainMenuScreen(MyGdxGame game) {
 //		this.game = game;
-//		System.out.printf("GamePlayScreen created");
+//		System.out.printf("MainMenuScreen created");
 //
 //	}
 
-public GamePlayScreen(MyGdxGame game) {
+public MainMenuScreen(MyGdxGame game) {
 	this.game = game;
 	texture = new Texture("gameplayscreen1.jpg");
 	gameplayscreen_image = new Image(texture);
@@ -77,8 +77,8 @@ public GamePlayScreen(MyGdxGame game) {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				System.out.printf("GamePlayScreen clicked 2.3");
-//				game.setScreen(new GamePlayScreen(game));
+				System.out.printf("MainMenuScreen clicked 2.3");
+//				game.setScreen(new MainMenuScreen(game));
 			}
 		});
 
@@ -89,7 +89,7 @@ public GamePlayScreen(MyGdxGame game) {
 //		load_game_image.addListener(new ClickListener() {
 //			@Override
 //			public void clicked(InputEvent event, float x, float y) {
-//				System.out.printf("GamePlayScreen clicked 2.3 Resume");
+//				System.out.printf("MainMenuScreen clicked 2.3 Resume");
 //				game.setScreen(new Resume_Game(game));
 //			}
 //		});
@@ -98,7 +98,7 @@ public GamePlayScreen(MyGdxGame game) {
 		exit_image.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				System.out.printf("GamePlayScreen clicked 2.3 Exit");
+				System.out.printf("MainMenuScreen clicked 2.3 Exit");
 				game.setScreen(new LoadingScreen(game));
 			}
 		});
@@ -109,7 +109,7 @@ public GamePlayScreen(MyGdxGame game) {
 		start_image.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-//				System.out.printf("GamePlayScreen clicked 2.3 New Game");
+//				System.out.printf("MainMenuScreen clicked 2.3 New Game");
 				game.setScreen(new Choose_Tank(game));
 			}
 		});
@@ -166,7 +166,7 @@ public GamePlayScreen(MyGdxGame game) {
 ////		}
 //		if (Gdx.input.isTouched()){
 //			dispose();
-//			game.setScreen(new GamePlayScreen(game));
+//			game.setScreen(new MainMenuScreen(game));
 //		}
 //		game.batch.end();
 //	}

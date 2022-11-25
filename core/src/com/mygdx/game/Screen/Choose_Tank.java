@@ -28,6 +28,7 @@ public class Choose_Tank implements Screen {
 	private Image tank1_image,tank2_image,tank3_image,choose_image;
 
 	public Choose_Tank tank_p1, tank_p2;
+	int i=0;
 
 	public Tank choose(){
 		return t1;
@@ -36,6 +37,7 @@ public class Choose_Tank implements Screen {
 
 	public Choose_Tank(MyGdxGame game) {
 		this.game = game;
+		i=0;
 		texture1 = new Texture("tank1.png");
 		tank1_image = new Image(texture1);
 		texture2 = new Texture("tank2.png");
@@ -58,6 +60,28 @@ public class Choose_Tank implements Screen {
 //		stage.addActor(tank2_image);
 //		stage.addActor(tank1_image);
 //		stage.addActor(choose_image);
+	}
+
+	public Choose_Tank(MyGdxGame game,int i) {
+		this.game = game;
+		this.i = i;
+		texture1 = new Texture("tank1.png");
+		tank1_image = new Image(texture1);
+		texture2 = new Texture("tank2.png");
+		tank2_image = new Image(texture2);
+		texture3 = new Texture("tank3.png");
+		tank3_image = new Image(texture3);
+		texture4 = new Texture("Choose.png");
+		choose_image = new Image(texture4);
+
+		region = new TextureRegion(texture1, 0, 0, 32, 32);
+		gamecam = new OrthographicCamera();
+		gamePort = new StretchViewport(1200,675, gamecam);
+		stage = new Stage(gamePort);
+
+		tank1_image.setPosition(0, 0);
+		tank2_image.setPosition(0, 0);
+		tank3_image.setPosition(0, 0);
 	}
 
 	@Override
@@ -102,7 +126,7 @@ public class Choose_Tank implements Screen {
 //			@Override
 //			public void clicked(InputEvent event, float x, float y) {
 //				System.out.printf("Resume_Game clicked 2.3");
-//				game.setScreen(new GamePlayScreen(game));
+//				game.setScreen(new MainMenuScreen(game));
 ////				dispose();
 //			}
 //		});
@@ -110,7 +134,6 @@ public class Choose_Tank implements Screen {
 	}
 
 	private int tanks1() {
-		final int[] value = {1};
 		stage.addActor(tank1_image);
 		stage.addActor(choose_image);
 		choose_image.setPosition(gamePort.getWorldWidth() - choose_image.getWidth(), 0);
@@ -120,7 +143,6 @@ public class Choose_Tank implements Screen {
 			public void clicked(InputEvent event, float x, float y) {
 				tank1_image.remove();
 				choose_image.remove();
-				value[0] = 2;
 				tanks2();
 				return;
 			}
@@ -129,8 +151,19 @@ public class Choose_Tank implements Screen {
 		choose_image.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				System.out.printf("Tank 1 choosen\n");
-				game.setScreen(new PlayGame(game));
+				if (i == 0) {
+					System.out.printf("Tank 1 choosen by player 1\n");
+					game.setScreen(new Choose_Tank(game, 1));
+					return;
+				} else {
+					System.out.printf("Tank 1 choosen by player 2\n");
+//					tank1_image.remove();
+//					choose_image.remove();
+//					game.setScreen(new NewGame(game, new Player(1), new Player(1)));
+					game.setScreen(new PlayGame(game, new Player(i), new Player(1)));
+					return;
+				}
+//				game.setScreen(new PlayGame(game));
 
 //				System.out.printf("tanks1 2");
 //				System.out.printf("TANK 1 SELECTED and it is %d\n", value[0]);
@@ -140,11 +173,10 @@ public class Choose_Tank implements Screen {
 			}
 		});
 //		System.out.printf("olkbhjfdtcf 111111");
-		return value[0];
+		return 1;
 	}
 
 	private int tanks2() {
-		final int[] value = {2};
 		stage.addActor(tank2_image);
 		stage.addActor(choose_image);
 		choose_image.setPosition(gamePort.getWorldWidth() - choose_image.getWidth(), 0);
@@ -154,7 +186,6 @@ public class Choose_Tank implements Screen {
 			public void clicked(InputEvent event, float x, float y) {
 				tank2_image.remove();
 				choose_image.remove();
-				value[0] = 3;
 				tanks3();
 				return;
 			}
@@ -163,8 +194,22 @@ public class Choose_Tank implements Screen {
 		choose_image.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				System.out.printf("Tank 2 choosen\n");
-				game.setScreen(new PlayGame(game));
+				if (i == 0) {
+					System.out.printf("Tank 2 choosen by player 1\n");
+					game.setScreen(new Choose_Tank(game, 2));
+					return;
+				} else {
+					System.out.printf("Tank 2 choosen by player 2\n");
+//					tank2_image.remove();
+//					choose_image.remove();
+					game.setScreen(new PlayGame(game, new Player(i), new Player(2)));
+					return;
+				}
+
+
+
+//				System.out.printf("Tank 2 choosen\n");
+//				game.setScreen(new PlayGame(game));
 
 //				System.out.printf("TANK 2 SELECTED and it is %d\n", value[0]);
 //				System.out.printf("tanks2 2");
@@ -179,7 +224,6 @@ public class Choose_Tank implements Screen {
 	}
 
 	private int tanks3() {
-		final int[] value = {3};
 		stage.addActor(tank3_image);
 		stage.addActor(choose_image);
 		choose_image.setPosition(gamePort.getWorldWidth() - choose_image.getWidth(), 0);
@@ -189,7 +233,6 @@ public class Choose_Tank implements Screen {
 			public void clicked(InputEvent event, float x, float y) {
 				tank3_image.remove();
 				choose_image.remove();
-				value[0] = 1;
 				tanks1();
 				return;
 			}
@@ -198,8 +241,15 @@ public class Choose_Tank implements Screen {
 		choose_image.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				System.out.printf("Tank 3 choosen");
-				game.setScreen(new PlayGame(game));
+				if (i == 0) {
+					System.out.printf("Tank 3 choosen by player 1\n");
+					game.setScreen(new Choose_Tank(game, 3));
+					return;
+				} else {
+					System.out.printf("Tank 3 choosen by player 2\n");
+					game.setScreen(new PlayGame(game, new Player(i), new Player(3)));
+					return;
+				}
 
 //				System.out.printf("tanks3 2\n");
 //				System.out.printf("TANK 3 SELECTED and it is %d\n", value[0]);
